@@ -1,0 +1,4 @@
+name: Kelp
+type: module
+description: 'Provides a collection of global helper functions to be used when developing'
+core_version_requirement: ^9 || ^10

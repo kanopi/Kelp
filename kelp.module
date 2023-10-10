@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains kelp module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function kelp_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the SR Utility module.
+    case 'help.page.kelp':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module provides global helper functions') . '</p>';
+      return $output;
+
+    default:
+  }
+}
