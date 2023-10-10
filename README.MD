@@ -37,7 +37,7 @@ $kelpService = new KelpService();
 
 // Example usage:
 $link = $node->field_link->first(); // Assuming you have a link field
-$linkProperties = $kelpService->linkHelper($link, ['title' => 'Read More', 'modifiers' => ['btn', 'btn-primary']]);
+$linkProperties = $kelpService->linkHelper($link, ['title' => 'Find out more about kelp', 'modifiers' => ['btn', 'btn-primary']]);
 
 // $linkProperties will contain an array with URL, title, target, etc.
 dump($linkProperties);
