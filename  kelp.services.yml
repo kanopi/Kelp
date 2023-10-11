@@ -1,3 +1,0 @@
-services:
-  kelp:
-    class: Drupal\kelp\KelpService

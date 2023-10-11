@@ -1,0 +1,25 @@
+{
+    "name": "kanopi/kelp",
+    "type": "drupal-module",
+    "description": "Helper functions to help with development",
+    "keywords": [
+        "Drupal"
+    ],
+    "authors": [
+        {
+            "name": "Andy Sipple",
+            "homepage": "https://www.drupal.org/u/andysipple",
+            "role": "Maintainer"
+        }
+    ],
+    "license": "GPL-2.0+",
+    "homepage": "https://github.com/kanopi/Kelp",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://github.com/kanopi/Kelp/issues",
+        "source": "https://github.com/kanopi/Kelp"
+    },
+    "require": {
+        "drupal/core": "^9.0 || ^10.0"
+    }
+}

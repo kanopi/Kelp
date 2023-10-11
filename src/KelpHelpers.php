@@ -2,21 +2,10 @@
 
 namespace Drupal\kelp;
 
-/**
- * Kelp Service class.
- */
-class KelpService
+class KelpHelpers
 {
-
   /**
-   * Constructor.
-   */
-  public function __construct()
-  {
-  }
-
-  /**
-   * Helper: Check if field exists and is not empty.
+   * Check if a field exists and is not empty.
    *
    * @param object $entity
    *   Drupal Entity supporting fields.
@@ -26,7 +15,7 @@ class KelpService
    * @return bool
    *   TRUE if all field_names are valid on the entity, FALSE otherwise.
    */
-  public function fieldCheck($entity, $field_name)
+  public static function fieldCheck($entity, $field_name)
   {
     $list = is_array($field_name) ? $field_name : [$field_name];
 
@@ -40,7 +29,7 @@ class KelpService
   }
 
   /**
-   * Helper function to generate link properties from a link field.
+   * Generate link properties from a link field.
    *
    * @param \Drupal\Core\Link $link
    *   The link object containing the URL and other properties.
@@ -57,7 +46,7 @@ class KelpService
    *               - 'aria_label': The ARIA label for accessibility, if provided.
    *               - 'modifiers': An array of CSS class modifiers for styling.
    */
-  public function linkHelper($link, $options = [])
+  public static function linkHelper($link, $options = [])
   {
     $options = array_merge([
       'title' => 'Learn More',
@@ -79,7 +68,7 @@ class KelpService
   }
 
   /**
-   * Helper function to extract the YouTube video ID from a given URL.
+   * Extract the YouTube video ID from a given URL.
    *
    * @param string $source
    *   The YouTube video URL from which the ID needs to be extracted.
@@ -87,7 +76,7 @@ class KelpService
    * @return string|false
    *   The extracted YouTube video ID if found, or FALSE if not found.
    */
-  public function youtubeVideoId($source)
+  public static function youtubeVideoId($source)
   {
     $pattern = '/^(?:(?:(?:https?:)?\/\/)?(?:www.)?(?:youtu(?:be.com|.be))\/(?:watch\?v\=|v\/|embed\/)?([\w\-]+))/is';
 
@@ -98,7 +87,7 @@ class KelpService
   }
 
   /**
-   * Helper function to convert a string into a machine-friendly format with an optional separator.
+   * Convert a string into a machine-friendly format with an optional separator.
    *
    * @param string $text
    *   The input string to be transformed.
@@ -108,7 +97,7 @@ class KelpService
    * @return string
    *   The machine-friendly string with the specified separator.
    */
-  public function machinify($text, $separator = '_')
+  public static function machinify($text, $separator = '_')
   {
     $new_value = preg_replace('/[^a-z0-9_]+/', $separator, strtolower(trim($text)));
     return preg_replace('/' . $separator . '+/', $separator, $new_value);

@@ -3,20 +3,18 @@ Kelp is a central place to keep Kanopi Drupal helper functions.
 
 
 
-## `fieldCheck($entity, $field_name)`
+## `KelpHelpers::fieldCheck($entity, $field_name)`
 
 This function checks if a field exists on a Drupal entity and is not empty.
 
 ```php
-use Drupal\kelp\KelpService;
+use Drupal\kelp\KelpHelpers;
 
-// Create a new KelpService object
-$kelpService = new KelpService();
 
 // Example usage:
 $node = \Drupal::entityTypeManager()->getStorage('node')->load(1);
 
-if ($kelpService->fieldCheck($node, 'field_example')) {
+if (KelpHelpers::fieldCheck($node, 'field_example')) {
   // The field 'field_example' exists and is not empty.
   // Your code here...
 } else {
@@ -25,37 +23,33 @@ if ($kelpService->fieldCheck($node, 'field_example')) {
 }
 ```
 
-## `linkHelper($link, $options = [])`
+## `KelpHelpers::linkHelper($link, $options = [])`
 
 This function generates link properties from a link field.
 
 ```php
-use Drupal\kelp\KelpService;
+use Drupal\kelp\KelpHelpers;
 
-// Create a new KelpService object
-$kelpService = new KelpService();
 
 // Example usage:
 $link = $node->field_link->first(); // Assuming you have a link field
-$linkProperties = $kelpService->linkHelper($link, ['title' => 'Find out more about kelp', 'modifiers' => ['btn', 'btn-primary']]);
+$linkProperties = KelpHelpers::linkHelper($link, ['title' => 'Find out more about kelp', 'modifiers' => ['btn', 'btn-primary']]);
 
 // $linkProperties will contain an array with URL, title, target, etc.
 dump($linkProperties);
 ```
 
-## `youtubeVideoId($source)`
+## `KelpHelpers::youtubeVideoId($source)`
 
 This function extracts the YouTube video ID from a given URL.
 
 ```php
-use Drupal\kelp\KelpService;
+use Drupal\kelp\KelpHelpers;
 
-// Create a new KelpService object
-$kelpService = new KelpService();
 
 // Example usage:
 $youtubeURL = 'https://www.youtube.com/watch?v=VIDEO_ID';
-$videoId = $kelpService->youtubeVideoId($youtubeURL);
+$videoId = KelpHelpers::youtubeVideoId($youtubeURL);
 
 if ($videoId) {
   // $videoId will contain the extracted YouTube video ID.
@@ -66,20 +60,18 @@ if ($videoId) {
 }
 ```
 
-## `machinify($text, $separator = '_')`
+## `KelpHelpers::machinify($text, $separator = '_')`
 
 This function converts a string into a machine-friendly format with an optional separator.
 
 ```php
-use Drupal\kelp\KelpService;
+use Drupal\kelp\KelpHelpers;
 
-// Create a new KelpService object
-$kelpService = new KelpService();
 
 // Example usage:
 $text = "Convert This String";
-$machineFriendlyText = $kelpService->machinify($text, '-');
+$machineFriendlyText = KelpHelpers::machinify($text, '-');
 
 // $machineFriendlyText will be "convert-this-string"
-echo $machineFriendlyText;
+dump($machineFriendlyText);
 ```
