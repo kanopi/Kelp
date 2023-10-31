@@ -75,3 +75,19 @@ $machineFriendlyText = KelpHelpers::machinify($text, '-');
 // $machineFriendlyText will be "convert-this-string"
 dump($machineFriendlyText);
 ```
+
+## `KelpHelpers::getImageData($imageEntity)`
+
+This function returns retuns an array of image related information.
+
+```php
+use Drupal\kelp\KelpHelpers;
+
+
+// Example usage:
+$node_media_image_entity = $node->get('field_media_collection_image')->entity->get('field_media_image');
+$node_media_image_entity_data = KelpHelpers::getImageData($node_media_image_entity);
+
+// Array of useful information about the image.
+dump($node_media_image_entity_data);
+```

@@ -1,6 +1,7 @@
 <?php
 
 namespace Drupal\kelp;
+use Drupal\File\FileInterface;
 
 class KelpHelpers
 {
@@ -102,4 +103,67 @@ class KelpHelpers
     $new_value = preg_replace('/[^a-z0-9_]+/', $separator, strtolower(trim($text)));
     return preg_replace('/' . $separator . '+/', $separator, $new_value);
   }
+
+  /**
+   * Retrieves image-related information and generates a formatted array.
+   *
+   * @param \Drupal\Core\Field\FieldItemListInterface $field
+   *   The field containing the image to retrieve information for.
+   *
+   * @return array
+   *   An array containing image-related information including:
+   *   - 'fid' (int): The File ID of the image.
+   *   - 'src' (string): The URL of the image.
+   *   - 'alt' (string): The alt text for the image, if available.
+   *   - 'focal' (string): The focal point for background positioning.
+   *   - 'css' (string): CSS style for background image and position.
+   *   - 'info' (array): Information about the image, including:
+   *     - 'image_size' (int): The file size of the image in bytes.
+   *     - 'image_type' (string): The MIME type of the image.
+   *     - 'image_width' (int): The width of the image in pixels.
+   *     - 'image_height' (int): The height of the image in pixels.
+   *   - 'uri' (string): The URI of the image file.
+   */
+  public static function getImageData($field) {
+    $image_factory = \Drupal::service('image.factory');
+    $file = $field->entity;
+    if ($file instanceof FileInterface) {
+      $fid = '';
+      $image = '';
+      $imageInfo = [];
+      $css = '';
+      $alt = '';
+      $focalPoint = '50% 50%';
+      $uri = '';
+
+      if (isset($file->uri->value)) {
+        $fid = $file->fid->getValue()[0]['value'];
+        $uri = $file->uri->value;
+        $image = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
+        $image_info = $image_factory->get($file->getFileUri());
+        $imageInfo['image_size'] = $image_info->getFileSize();
+        $imageInfo['image_type'] = $file->getMimeType();
+        $image_width = $image_info->getWidth();
+        $image_height = $image_info->getHeight();
+        $imageInfo['image_width'] = $image_width;
+        $imageInfo['image_height'] = $image_height;
+        // Alt tag.
+        if (isset($field->getValue()[0]['alt'])) {
+          $alt = $field->getValue()[0]['alt'];
+        }
+      }
+
+      $css = 'background-image: url( ' . $image . ' ); background-position: ' . $focalPoint . ';';
+      return [
+        'fid' => $fid,
+        'src' => $image,
+        'alt' => $alt,
+        'focal' => $focalPoint,
+        'css' => $css,
+        'info' => $imageInfo,
+        'uri' => $uri,
+      ];
+    }
+  }
+
 }
