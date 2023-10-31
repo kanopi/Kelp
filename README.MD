@@ -84,7 +84,8 @@ This function returns retuns an array of image related information.
 use Drupal\kelp\KelpHelpers;
 
 
-// Example usage:
+// Example of an Image media entity on a node with the media
+// image field field_media_image:
 $node_media_image_entity = $node->get('field_media_collection_image')->entity->get('field_media_image');
 $node_media_image_entity_data = KelpHelpers::getImageData($node_media_image_entity);
 
