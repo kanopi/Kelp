@@ -1,4 +1,4 @@
-# KELP
+# Kelp
 Kelp is a central place to keep Kanopi Drupal helper functions.
 
 
